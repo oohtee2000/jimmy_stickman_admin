@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/layout/AppSidebar"
+
+import { NavBar } from "@/components/layout/NavBar";
+import Breadcrumb from "@/components/layout/BreadCrumbs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +30,25 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+        suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body suppressHydrationWarning className="min-h-full flex flex-col">
+
+       <SidebarProvider>
+         <AppSidebar />
+
+
+           <div className="flex min-h-screen flex-1 flex-col">
+            <NavBar />
+            <Breadcrumb/>
+
+            <main className="flex-1 overflow-auto p-6">
+              {children}
+            </main>
+          </div>
+       </SidebarProvider>
+      </body>
     </html>
   );
 }
