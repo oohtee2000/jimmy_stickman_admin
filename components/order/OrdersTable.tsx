@@ -1,6 +1,6 @@
 import { MoreHorizontal } from "lucide-react";
 import type { Order } from "./types";
-import OrderStatusBadge from "./OrderStatusBadge";
+
 
 import type { Customer } from "@/components/customer/types";
 
@@ -10,7 +10,12 @@ interface OrdersTableProps {
 }
 
 
-
+const statusStyles: Record<Order["status"], string> = {
+  Pending: "bg-amber-100 text-amber-700",
+  Processing: "bg-blue-100 text-blue-700",
+  Completed: "bg-emerald-100 text-emerald-700",
+  Cancelled: "bg-red-100 text-red-700",
+};
 
 
 export default function OrdersTable({
@@ -114,7 +119,11 @@ export default function OrdersTable({
 
               {/* Status */}
               <td className="px-4 py-4">
-                <OrderStatusBadge status={order.status} />
+                <span
+  className={`shrink-0 inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${statusStyles[order.status]}`}
+>
+  {order.status}
+</span>
               </td>
 
               {/* Date */}

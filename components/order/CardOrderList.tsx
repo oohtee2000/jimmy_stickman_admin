@@ -1,6 +1,5 @@
 import { MoreHorizontal } from "lucide-react";
 
-import OrderStatusBadge from "./OrderStatusBadge";
 import type { Order } from "./types";
 
 import type { Customer } from "@/components/customer/types";
@@ -10,6 +9,15 @@ interface OrdersCardListProps {
   customers: Customer[];
 
 }
+
+const statusStyles: Record<Order["status"], string> = {
+  Pending: "bg-amber-100 text-amber-700",
+  Processing: "bg-blue-100 text-blue-700",
+  Completed: "bg-emerald-100 text-emerald-700",
+  Cancelled: "bg-red-100 text-red-700",
+};
+
+
 export default function OrdersCardList({
   orders, customers
 }: OrdersCardListProps) {
@@ -44,10 +52,11 @@ export default function OrdersCardList({
 </div>
               </div>
 
-              <OrderStatusBadge
-                status={order.status}
-                className="shrink-0"
-              />
+              <span
+  className={`shrink-0 inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${statusStyles[order.status]}`}
+>
+  {order.status}
+</span>
             </div>
 
             {/* Details */}
