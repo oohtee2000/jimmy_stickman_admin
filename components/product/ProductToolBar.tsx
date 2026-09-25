@@ -57,13 +57,16 @@ export default function ProductsToolbar({
           More Filters
         </button>
 
+         <a href="/products/create" className="flex">
         <button
           type="button"
           className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
         >
+         
           <Plus className="h-4 w-4" />
           Add Product
         </button>
+        </a>
       </div>
     </div>
   );

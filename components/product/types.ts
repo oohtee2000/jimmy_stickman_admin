@@ -4,13 +4,49 @@ export type ProductStatus =
   | "Out of Stock"
   | "Archived";
 
+
+
+
+export type ProductGender =
+  | "Men"
+  | "Women"
+  | "Unisex";
+
+export type ProductAgeGroup =
+  | "Adult"
+  | "Kids";
+
+export type ProductCategory =
+  | "Shoes"
+  | "Clothes"
+  | "Bags"
+  | "Accessories";
+
+export type ProductActivity =
+  | "Sport"
+  | "Lifestyle"
+  | "Training"
+  | "Running";
+
+export type ProductType =
+  | "Original"
+  | "Replica";
+
+
 export interface Product {
   id: string;
 
   name: string;
   sku: string;
+ gender: string | null;
+  ageGroup: ProductAgeGroup | null;
 
-  category: string;
+  category: ProductCategory;
+  subcategory: string | null;
+
+  activity: ProductActivity | null;
+  productType: ProductType | null;
+ 
   brand: string;
   color: string;
 
@@ -25,6 +61,9 @@ export interface Product {
 
   createdAt: string;
 }
+
+
+
 
 export interface ProductStat {
   label: string;
